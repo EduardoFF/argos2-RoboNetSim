@@ -156,4 +156,30 @@ namespace argos {
                      "  </controllers>\n\n",
 		    "UNDER DEVELOPMENT"
 		    );
+    /*Registering the Wifi Actuator*/
+  REGISTER_ACTUATOR(CWiFiActuatorExternNamed,
+		    "wifiextern","default",
+		    "The wifi actuator",
+		    "Marco Cinus [marco@idsia.ch]",
+		    "This actuator access the wifi actuator of a wifi equipped entity (only footbots at this time)\n"
+		    "For a complete description of its usage refer to the common interface\n"
+		    "In this implementation the actuator is sending a message to all wifi-equipped entities\n"
+		    "present in the space. Two system are provided for the sender, a broadcast message, which is \n"
+		    "received and processed by all entities, and a unicast message, which is processed only by the recipient\n"
+		    "REQUIRED XML CONFIGURATION\n\n"
+                     "  <controllers>\n"
+                     "    ...\n"
+                     "    <my_controller ...>\n"
+                     "      ...\n"
+                     "      <actuators>\n"
+                     "        ...\n"
+                     "        <wifi implementation=\"extern\" />\n"
+                     "        ...\n"
+                     "      </actuators>\n"
+                     "      ...\n"
+                     "    </my_controller>\n"
+                     "    ...\n"
+                     "  </controllers>\n\n",
+		    "UNDER DEVELOPMENT"
+		    );
 }

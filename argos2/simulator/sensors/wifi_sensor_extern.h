@@ -70,6 +70,40 @@ namespace argos {
 
   };
 
+  class CWiFiSensorExternNamed : public CWiFiSensorExtern {
+  public:
+    CWiFiSensorExternNamed()
+    {
+      CWiFiSensorExtern();
+    }
+    virtual ~CWiFiSensorExternNamed() {}
+
+    virtual void Init(TConfigurationNode& t_tree)
+    {
+      CWiFiSensorExtern::Init(t_tree);
+    }
+
+    inline virtual CEntity& GetEntity() {
+      
+      return CWiFiSensorExtern::GetEntity();
+    }
+    virtual void SetEntity(CEntity& c_entity)
+    {
+      CWiFiSensorExtern::SetEntity(c_entity);
+    }
+
+    virtual void Update()
+    {
+      CWiFiSensorExtern::Update();
+    }
+    virtual void Reset()
+    {
+      CWiFiSensorExtern::Reset();
+    }
+    
+
+  };
+
 }
 
 #endif

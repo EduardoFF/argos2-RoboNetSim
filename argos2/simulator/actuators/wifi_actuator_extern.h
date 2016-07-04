@@ -80,7 +80,41 @@ namespace argos {
     UInt8 tstTempCounter;
     UInt8 tstCounterLimit;
   };
+  
+  class CWiFiActuatorExternNamed : public CWiFiActuatorExtern {
+  public:
+    CWiFiActuatorExternNamed()
+    {
+      CWiFiActuatorExtern();
+    }
+    virtual ~CWiFiActuatorExternNamed() {}
 
+    virtual void Init(TConfigurationNode& t_tree)
+    {
+      CWiFiActuatorExtern::Init(t_tree);
+    }
+
+    inline virtual CEntity& GetEntity() {
+      
+      return CWiFiActuatorExtern::GetEntity();
+    }
+    virtual void SetEntity(CEntity& c_entity)
+    {
+      CWiFiActuatorExtern::SetEntity(c_entity);
+    }
+
+    virtual void Update()
+    {
+      CWiFiActuatorExtern::Update();
+    }
+    virtual void Reset()
+    {
+      CWiFiActuatorExtern::Reset();
+    }
+    
+
+  };
+    
 }
 
 #endif
