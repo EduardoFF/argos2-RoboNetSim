@@ -212,7 +212,7 @@ namespace argos {
 
   /*Registering the Wifi Actuator*/
   REGISTER_ACTUATOR(CWiFiActuatorDual,
-		    "wifi","extern",
+		    "wifi","dual",
 		    "The wifi actuator",
 		    "Marco Cinus [marco@idsia.ch]",
 		    "This actuator access the wifi actuator of a wifi equipped entity (only footbots at this time)\n"

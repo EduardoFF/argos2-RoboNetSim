@@ -228,7 +228,7 @@ namespace argos {
   /****************************************/
   /****************************************/
   REGISTER_SENSOR(CWiFiSensorDual,
-		  "wifi", "extern",
+		  "wifi", "dual",
 		  "The Swarmanoid wifi sensor",
 		  "Marco Cinus [marco@idsia.ch]",
 		  "This sensor accesses the foot-bot wifi sensor. For a complete\n"
