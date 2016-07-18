@@ -53,6 +53,9 @@ namespace argos {
     virtual void Reset();
 
     void GetReceivedMessages(TMessageList& t_messages);
+    void GetReceivedMessages_Local(TMessageList& t_messages){}
+    void GetReceivedMessages_Extern(TMessageList& t_messages){}
+    
 
     /*Added by michal*/
     void GetPositionInfo(CVector3& position); // Possibility to obtain coordinates via this sensor (thus, may also work as a virtual, ideal GPS-like device)

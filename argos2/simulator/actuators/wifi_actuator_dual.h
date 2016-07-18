@@ -19,11 +19,11 @@
  * @author Carlo Pinciroli - <cpinciro@ulb.ac.be>
  */
 
-#ifndef WIFI_ACTUATOR_EXTERN_H
-#define WIFI_ACTUATOR_EXTERN_H
+#ifndef WIFI_ACTUATOR_DUAL_H
+#define WIFI_ACTUATOR_DUAL_H
 
 namespace argos {
-  class CWiFiActuatorExtern;
+  class CWiFiActuatorDual;
   class CControllableEntity;
   class CSpace;
 }
@@ -38,13 +38,13 @@ namespace argos {
 
 namespace argos {
 
-  class CWiFiActuatorExtern : public CSimulatedActuator,
+  class CWiFiActuatorDual : public CSimulatedActuator,
 			   public CCI_WiFiActuator {
 
   public:
 
-    CWiFiActuatorExtern();
-    virtual ~CWiFiActuatorExtern() {}
+    CWiFiActuatorDual();
+    virtual ~CWiFiActuatorDual() {}
 
     virtual void Init(TConfigurationNode& t_tree);
 
@@ -56,47 +56,40 @@ namespace argos {
     virtual void Update();
     virtual void Reset();
 
-    void SendBinaryMessageTo(const std::string& str_recipient,
-			       const char *payload,
-			       size_t len,
-			       int f_delay = 0);
-
+    virtual void SendBinaryMessageTo(const std::string& str_recipient,
+			     const char *payload,
+			     size_t len,
+			     int f_delay = 0);
     virtual void SendMessageTo(const std::string& str_recipient,
 			       const std::string& str_payload,
 			       int f_delay = 0);
-
     virtual void BroadcastMessage(const std::string& str_payload,
 				  int f_delay = 0);
 
-        virtual void SendMessageTo_Local(const std::string& str_recipient,
-			       const std::string& str_payload,
-			       int f_delay = 0)
-    {}
-
+    
     virtual void SendBinaryMessageTo_Local(const std::string& str_recipient,
-			       const char *payload,
-			       size_t len,
-				     int f_delay = 0)
-    {}
-    virtual void BroadcastMessage_Local(const std::string& str_payload,
-				  int f_delay = 0)
-    {}
+			     const char *payload,
+			     size_t len,
+			     int f_delay = 0);
+
+    virtual void SendBinaryMessageTo_Extern(const std::string& str_recipient,
+			     const char *payload,
+			     size_t len,
+			     int f_delay = 0);
+
+    virtual void SendMessageTo_Local(const std::string& str_recipient,
+			       const std::string& str_payload,
+			       int f_delay = 0);
     
     virtual void SendMessageTo_Extern(const std::string& str_recipient,
 			       const std::string& str_payload,
-			       int f_delay = 0)
-    {}
+			       int f_delay = 0);
 
-    virtual void SendBinaryMessageTo_Extern(const std::string& str_recipient,
-			       const char *payload,
-			       size_t len,
-					    int f_delay = 0)
-    {}
-    virtual void BroadcastMessage_Extern(const std::string& str_payload,
-				  int f_delay = 0)
-    {}
+    void BroadcastMessage_Local(const std::string& str_payload,
+				  int f_delay = 0);
 
-
+    void BroadcastMessage_Extern(const std::string& str_payload,
+				 int f_delay = 0);
 
   private:
 
@@ -104,42 +97,45 @@ namespace argos {
     CEntity* m_pcEntity;
     CWiFiEquippedEntity* m_pcWiFiEquippedEntity;
 
-    //My added stuff (Cinus)
-    TMessageList m_tMessages;
+    TMessageList m_tMessagesExtern;
+    TMessageList m_tMessagesLocal;
 
     UInt8 tstTempCounter;
     UInt8 tstCounterLimit;
+    
+    Real m_fRange;
+    Real m_fProbability;	// added by Michal: a probability of successful transmission
   };
   
-  class CWiFiActuatorExternNamed : public CWiFiActuatorExtern {
+  class CWiFiActuatorDualNamed : public CWiFiActuatorDual {
   public:
-    CWiFiActuatorExternNamed()
+    CWiFiActuatorDualNamed()
     {
-      CWiFiActuatorExtern();
+      CWiFiActuatorDual();
     }
-    virtual ~CWiFiActuatorExternNamed() {}
+    virtual ~CWiFiActuatorDualNamed() {}
 
     virtual void Init(TConfigurationNode& t_tree)
     {
-      CWiFiActuatorExtern::Init(t_tree);
+      CWiFiActuatorDual::Init(t_tree);
     }
 
     inline virtual CEntity& GetEntity() {
       
-      return CWiFiActuatorExtern::GetEntity();
+      return CWiFiActuatorDual::GetEntity();
     }
     virtual void SetEntity(CEntity& c_entity)
     {
-      CWiFiActuatorExtern::SetEntity(c_entity);
+      CWiFiActuatorDual::SetEntity(c_entity);
     }
 
     virtual void Update()
     {
-      CWiFiActuatorExtern::Update();
+      CWiFiActuatorDual::Update();
     }
     virtual void Reset()
     {
-      CWiFiActuatorExtern::Reset();
+      CWiFiActuatorDual::Reset();
     }
     
 

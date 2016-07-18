@@ -144,6 +144,8 @@ namespace argos {
     virtual ~CCI_WiFiSensor() {}
 
     virtual void GetReceivedMessages(TMessageList& t_messages) = 0;
+    virtual void GetReceivedMessages_Local(TMessageList& t_messages) = 0;
+    virtual void GetReceivedMessages_Extern(TMessageList& t_messages) = 0;
 
     /*Added by michal*/
     virtual void GetPositionInfo(CVector3& position) = 0;	// Possibility to obtain coordinates via this sensor (thus, may also work as a virtual, ideal GPS-like device)

@@ -19,11 +19,11 @@
  * @author Carlo Pinciroli - <cpinciro@ulb.ac.be>
  */
 
-#ifndef WIFI_SENSOR_H
-#define WIFI_SENSOR_H
+#ifndef WIFI_SENSOR_EXTERN_H
+#define WIFI_SENSOR_EXTERN_H
 
 namespace argos {
-  class CWiFiSensor;
+  class CWiFiSensorDual;
   class CControllableEntity;
 }
 
@@ -34,13 +34,13 @@ namespace argos {
 
 namespace argos {
 
-  class CWiFiSensor : public CSimulatedSensor,
+  class CWiFiSensorDual : public CSimulatedSensor,
 		      public CCI_WiFiSensor {
 
   public:
 
-    CWiFiSensor();
-    virtual ~CWiFiSensor() {}
+    CWiFiSensorDual();
+    virtual ~CWiFiSensorDual() {}
 
     virtual void Init(TConfigurationNode& t_tree);
 
@@ -53,29 +53,28 @@ namespace argos {
     virtual void Reset();
 
     void GetReceivedMessages(TMessageList& t_messages);
-
-    void GetReceivedMessages_Local(TMessageList& t_messages){}
-    void GetReceivedMessages_Extern(TMessageList& t_messages){}
-
+    void GetReceivedMessages_Local(TMessageList& t_messages);
+    void GetReceivedMessages_Extern(TMessageList& t_messages);
 
     /*Added by michal*/
     void GetPositionInfo(CVector3& position); // Possibility to obtain coordinates via this sensor (thus, may also work as a virtual, ideal GPS-like device)
     virtual void GetOrientationInfo(CQuaternion& orientation);	// Similarly, obtain the robot's orientation
 
   private:
-
     void UpdateWithRange();
     void UpdateWithNoRange();
+
     CSpace& m_cSpace;
     CEntity* m_pcEntity;
     CWiFiEquippedEntity* m_pcWiFiEquippedEntity;
     /*Added by Marco*/
-    TMessageList m_tMessages;
-    /* Random number generator */
+    TMessageList m_tMessagesLocal, m_tMessagesExtern;
+    /*Added bby Michal, not used here*/
     CARGoSRandom::CRNG* m_pcRNG;
-    /* Used as a range for uniform number generation , represents the range of valid prabability values, i.e. [0,1]*/
     CRange<Real> ProbRange;
+
   };
+
 
 }
 
