@@ -190,6 +190,12 @@ map<UInt8, Node> LCMHandler::retrieveNodeList() {
 
 }
 
+void
+LCMHandler::clearNodeList()
+{
+  listAllNodes.clear();
+}
+
 void 
 LCMHandler::setLCMMessageFromNodeList(map<UInt8, Node> nodeList, poselcm::pose_list_t* lcmNodeList) 
 {

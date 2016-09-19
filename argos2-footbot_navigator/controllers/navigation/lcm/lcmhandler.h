@@ -127,6 +127,7 @@ public:
 	 */
 	bool existNode(const UInt8 id);
 
+	void clearNodeList();
 	/**
 	 * Add a new node if is not already in the list or will update it if is already in the list.
 	 *

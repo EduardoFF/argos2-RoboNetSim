@@ -125,6 +125,8 @@ RVONavClient::stop()
     {
       m_wpControl->clear();
     }
+  else
+    lcmThreadCommand->getLcmHandler()->clearNodeList();
 }
 UInt8
 RVONavClient::robotId()
@@ -224,7 +226,10 @@ RVONavClient::setBeacon()
       }
       break;
     case STATE_MOVING:
-      m_beaconActuator->SetColor(CColor::GREEN);
+      if( m_enforcing )
+	m_beaconActuator->SetColor(CColor::MAGENTA);
+      else
+	m_beaconActuator->SetColor(CColor::GREEN);
       break;
     case STATE_ORIENTING:
       m_beaconActuator->SetColor(CColor::YELLOW);
